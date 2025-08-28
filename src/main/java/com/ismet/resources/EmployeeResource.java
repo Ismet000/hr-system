@@ -5,12 +5,15 @@ import com.ismet.domain.Employee;
 import com.ismet.services.EmployeeService;
 import com.ismet.services.EmployeeServiceImpl;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 import java.util.UUID;
 
 @Path("/employees")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class EmployeeResource extends AbstractResource {
     EmployeeService employeeService = new EmployeeServiceImpl();
 
@@ -18,8 +21,8 @@ public class EmployeeResource extends AbstractResource {
     @Path("/insert")
     public Response insertEmployee(String payload) throws Exception {
         Employee employee = gson().fromJson(payload, Employee.class);
-        employee.setId(UUID.randomUUID().toString());
-        employeeService.saveEmployee(employee);
+        //employee.setId(UUID.randomUUID().toString());
+        employeeService.insertEmployee(employee);
         return Response.ok().build();
     }
 
@@ -46,4 +49,5 @@ public class EmployeeResource extends AbstractResource {
         List<Employee> employees = employeeService.getAllEmployees();
         return Response.ok(employees).build();
     }
+
 }

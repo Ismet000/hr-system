@@ -20,6 +20,10 @@ public abstract class AbstractEntity {
         return !(this.id == null || other.id == null || !this.id.equals(other.id));
     }
 
+    public  String generateAlias(String alias){
+        return alias!=null && !alias.isEmpty() ? (alias.contains(".") ? alias : alias + ".") : "";
+    }
+
     public String getId() {
         return id;
     }

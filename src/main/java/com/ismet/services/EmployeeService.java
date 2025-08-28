@@ -5,7 +5,7 @@ import com.ismet.domain.Employee;
 import java.util.List;
 
 public interface EmployeeService {
-    void saveEmployee(Employee employee) throws Exception;
+    void insertEmployee(Employee employee) throws Exception;
 
     void updateEmployee(Employee employee) throws Exception;
 
